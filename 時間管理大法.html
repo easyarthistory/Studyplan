@@ -467,9 +467,17 @@
             
             cell.id = `day-cell-${i}`;
             cell.className = `day-cell ${savedData.completed ? 'is-completed' : ''}`;
-            cell.setAttribute('ondragover', 'allowDrop(event)');
-            cell.setAttribute('ondragleave', 'leaveDrop(event)');
-            cell.setAttribute('ondrop', 'drop(event, ' + i + ')');
+            
+            // 電腦版 Drop 事件
+            cell.addEventListener('dragover', (e) => e.preventDefault());
+            cell.addEventListener('drop', (e) => {
+                e.preventDefault();
+                if (savedData.completed) return;
+                const data = e.dataTransfer.getData("text");
+                const input = document.getElementById(`study-input-${i}`);
+                input.value = "溫習：" + data;
+                saveData(i, 'study', input.value);
+            });
 
             cell.innerHTML = `
                 <div class="cell-top">
