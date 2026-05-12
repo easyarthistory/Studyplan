@@ -23,6 +23,11 @@
             font-family: 'Kiwi Maru', 'Zen Maru Gothic', serif;
             margin: 0;
             padding: 20px;
+            touch-action: manipulation; /* 優化手機點擊 */
+        }
+
+        @media (min-width: 768px) {
+            body { padding: 20px; }
         }
 
         .notebook-container {
@@ -34,6 +39,10 @@
             box-shadow: 0 10px 25px rgba(111, 78, 55, 0.15);
             border: 3px solid var(--latte);
             position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .notebook-container { padding: 30px; border-radius: 30px; }
         }
 
         .title-banner {
@@ -48,6 +57,10 @@
             font-weight: 700;
             color: var(--mocha);
             letter-spacing: 2px;
+        }
+
+        @media (min-width: 768px) {
+            h1 { font-size: 2.2rem; }
         }
 
         /* 拖拉區域 */
@@ -74,6 +87,8 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
+            user-select: none;
+            touch-action: none; /* 重要：防止拖拽時螢幕滾動 */
         }
 
         .draggable-item:active { cursor: grabbing; transform: scale(0.95); }
