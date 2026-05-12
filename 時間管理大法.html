@@ -361,20 +361,81 @@
     }
 
     function renderSubjects() {
-        const items = blockArea.querySelectorAll('.draggable-item');
-        items.forEach(i => i.remove());
-
+        blockArea.querySelectorAll('.draggable-item').forEach(i => i.remove());
         subjects.forEach((sub, index) => {
             const div = document.createElement('div');
             div.className = 'draggable-item';
             div.setAttribute('draggable', 'true');
-            div.setAttribute('ondragstart', 'drag(event)');
-            div.innerHTML = `${sub} <span class="delete-btn no-print" onclick="deleteSubject(${index})">✕</span>`;
+            div.innerHTML = `${sub} <span class="text-[8px] text-red-400 ml-1 cursor-pointer no-print" onclick="event.stopPropagation(); deleteSubject(${index})">✕</span>`;
+            
+            // 電腦拖拽
+            div.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData("text", sub);
+            });
+
+            // 手機拖拽模擬
+            div.addEventListener('touchstart', (e) => handleTouchStart(e, sub), { passive: false });
+            div.addEventListener('touchmove', handleTouchMove, { passive: false });
+            div.addEventListener('touchend', handleTouchEnd, { passive: false });
+
             blockArea.insertBefore(div, blockArea.lastElementChild);
         });
         localStorage.setItem('study_v4_subjects', JSON.stringify(subjects));
     }
 
+    // --- 手機觸控拖拽邏輯 ---
+    function handleTouchStart(e, text) {
+        const touch = e.touches[0];
+        activeTouchData = text;
+        
+        touchGhost.innerText = text;
+        touchGhost.style.display = 'block';
+        touchGhost.style.left = touch.clientX + 'px';
+        touchGhost.style.top = touch.clientY + 'px';
+        
+        // 防止頁面捲動
+        // e.preventDefault(); 
+    }
+
+    function handleTouchMove(e) {
+        if (!activeTouchData) return;
+        const touch = e.touches[0];
+        touchGhost.style.left = touch.clientX + 'px';
+        touchGhost.style.top = touch.clientY + 'px';
+
+        // 偵測下方元素
+        const target = document.elementFromPoint(touch.clientX, touch.clientY);
+        const cell = target ? target.closest('.day-cell') : null;
+
+        // 移除所有格子的選取效果
+        document.querySelectorAll('.day-cell').forEach(c => c.classList.remove('drag-over'));
+        
+        if (cell && !cell.classList.contains('is-completed')) {
+            cell.classList.add('drag-over');
+        }
+        
+        e.preventDefault();
+    }
+
+    function handleTouchEnd(e) {
+        if (!activeTouchData) return;
+        
+        const touch = e.changedTouches[0];
+        const target = document.elementFromPoint(touch.clientX, touch.clientY);
+        const cell = target ? target.closest('.day-cell') : null;
+
+        if (cell && !cell.classList.contains('is-completed')) {
+            const dayId = cell.id.replace('day-cell-', '');
+            const input = document.getElementById(`study-input-${dayId}`);
+            input.value = "溫習：" + activeTouchData;
+            saveData(dayId, 'study', input.value);
+            cell.classList.remove('drag-over');
+        }
+
+        touchGhost.style.display = 'none';
+        activeTouchData = null;
+    }
+    
     function addNewSubject() {
         const name = newSubjectInput.value.trim();
         if (name) {
