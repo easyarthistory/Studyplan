@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
@@ -22,7 +22,7 @@
             color: var(--mocha);
             font-family: 'Kiwi Maru', 'Zen Maru Gothic', serif;
             margin: 0;
-            padding: 20px;
+            padding: 10px;
             touch-action: manipulation; /* 優化手機點擊 */
         }
 
@@ -31,11 +31,11 @@
         }
 
         .notebook-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             background-color: var(--paper);
-            padding: 30px;
-            border-radius: 30px;
+            padding: 15px;
+            border-radius: 20px;
             box-shadow: 0 10px 25px rgba(111, 78, 55, 0.15);
             border: 3px solid var(--latte);
         }
@@ -48,14 +48,13 @@
             text-align: center;
             border-bottom: 2px dashed var(--latte);
             padding-bottom: 15px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         h1 {
             font-size: 1.4rem;
             font-weight: 700;
             color: var(--mocha);
-            letter-spacing: 2px;
         }
 
         @media (min-width: 768px) {
@@ -71,6 +70,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            justify-content: center;
             align-items: center;
         }
 
@@ -81,8 +81,6 @@
             border: 1.5px solid var(--latte);
             cursor: grab;
             font-size: 0.85rem;
-            user-select: none;
-            transition: all 0.2s;
             display: inline-flex;
             align-items: center;
             gap: 4px;
@@ -131,7 +129,6 @@
             border-radius: 12px;
             padding: 8px;
             background: white;
-            transition: all 0.3s;
             display: flex;
             flex-direction: column;
             gap: 4px;
@@ -139,120 +136,84 @@
             transition: background-color 0.2s;
         }
 
-        /* 已完成樣式 */
-        .day-cell.is-completed {
-            background-color: var(--completed-bg) !important;
-            border-color: #D1D1D1;
-            opacity: 0.7;
-        }
-
-        .day-cell.is-completed .input-area {
-            background: transparent !important;
-            color: var(--completed-text) !important;
-            text-decoration: line-through;
-            pointer-events: none;
-        }
-
-        .day-cell.is-completed .cell-date {
-            color: var(--completed-text);
-        }
-
         .day-cell.drag-over {
-            background-color: #FFF4E0;
+            background-color: #FDF2E9;
             border-color: var(--accent);
-            transform: scale(1.02);
         }
 
-        .cell-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2px;
-        }
-
-        .cell-date {
-            font-size: 0.75rem;
-            color: var(--latte);
-            font-weight: bold;
-        }
+        .day-cell.is-completed { background-color: var(--completed-bg) !important; opacity: 0.7; }
+        
+        .cell-top { display: flex; justify-content: space-between; align-items: center; }
+        .cell-date { font-size: 0.7rem; color: var(--latte); font-weight: bold; }
 
         .complete-toggle {
             cursor: pointer;
-            width: 18px;
-            height: 18px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
-            border: 1.5px solid var(--latte);
+            border: 1.2px solid var(--latte);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 10px;
-            transition: all 0.2s;
             background: white;
         }
 
-        .complete-toggle:hover {
-            transform: scale(1.1);
-            background: var(--cream);
-        }
-
-        .is-completed .complete-toggle {
-            background: var(--mocha);
-            color: white;
-            border-color: var(--mocha);
-        }
+        .is-completed .complete-toggle { background: var(--mocha); color: white; }
 
         .input-area {
             width: 100%;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             font-size: 0.85rem;
             outline: none;
             background: #FDFBFA;
-            color: var(--mocha);
             padding: 4px;
         }
 
-        .exam-tag { background-color: #FFEDD5; border-bottom: 2px solid #FED7AA; }
-        .study-tag { background-color: #E0F2FE; border-bottom: 2px solid #BAE6FD; }
+        .exam-tag { background-color: #FFEDD5; font-weight: bold; }
+        .study-tag { background-color: #E0F2FE; }
 
         .note-section {
-            margin-top: 30px;
-            font-size: 0.9rem;
+            margin-top: 20px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: 1fr;
+            gap: 15px;
         }
+
+        @media (min-width: 768px) { .note-section { grid-template-columns: 1fr 1fr; } }
 
         .controls {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 10px;
             margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 15px;
+        }
+
+        @media (min-width: 1024px) {
+            .controls { flex-direction: row; justify-content: space-between; align-items: center; }
         }
 
         .btn-group {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
+            justify-content: center;
         }
 
         .btn-main {
             background-color: var(--mocha);
             color: white;
-            padding: 8px 16px;
+            padding: 10px 14px;
             border-radius: 15px;
             cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            font-size: 0.85rem;
             border: none;
+            flex: 1 1 auto;
+            text-align: center;
+            min-width: 100px;
         }
 
-        .btn-main:hover { filter: brightness(1.2); transform: translateY(-1px); }
         .btn-download { background-color: #D4A373; }
         .btn-method { background-color: #8EACCD; }
 
@@ -270,7 +231,7 @@
             display: none;
             opacity: 0.9;
         }
-        
+
         @media print {
             .no-print, .complete-toggle { display: none !important; }
             .calendar-scroll-wrapper { overflow: visible; }
@@ -281,65 +242,71 @@
 </head>
 <body>
 
+<div id="touch-ghost"></div>
+
 <div class="notebook-container">
     <div class="title-banner">
         <h1>🧸 溫習時間管理大法</h1>
-        <p style="opacity: 0.8;">「由尾溫起」的機械速食式功法</p>
+        <p class="text-[10px] md:text-sm opacity-80">「由尾溫起」的機械速食式功法</p>
         <p style="opacity: 0.6;">**以下溫習方法只適用於「臨急抱佛腳」的極端情況下</p>
     </div>
 
-    <!-- 拖拉區域 -->
+    <!-- 科目區域 -->
     <div class="block-area no-print" id="blockArea">
-        <span class="text-sm font-bold">✨ 科目方塊：</span>
+        <span class="text-sm font-bold">✨ 溫習科目方塊：</span>
         <!-- JS 動態生成方塊 -->
-        <div class="flex items-center gap-1 ml-4 border-l pl-4 border-mocha border-opacity-20">
-            <input type="text" id="newSubjectInput" class="add-block-input" placeholder="新增科目 (如: 物理)">
-            <button onclick="addNewSubject()" class="btn-main text-xs py-1 px-3">+</button>
+        <div class="flex items-center gap-1 w-full md:w-auto justify-center">
+            <input type="text" id="newSubjectInput" class="border-2 border-latte rounded-lg px-2 py-1 text-xs outline-none w-32" placeholder="新增科目(如: 物理)">
+            <button onclick="addNewSubject()" class="bg-mocha text-white rounded-lg px-4 py-1 text-xs font-bold">+</button>
         </div>
     </div>
 
     <div class="controls no-print">
-        <div class="flex items-center gap-4">
-            <label class="text-sm font-bold">📅 顯示天數：</label>
-            <input type="range" min="7" max="28" step="7" value="14" id="daysRange" oninput="updateDays(this.value)">
-            <span id="daysDisplay" class="text-sm font-bold">14 天</span>
+        <div class="flex items-center gap-2 justify-center">
+            <label class="text-xs font-bold">天數：</label>
+            <input type="range" min="7" max="28" step="7" value="14" class="w-24" id="daysRange" oninput="updateDays(this.value)">
+            <span id="daysDisplay" class="text-xs font-bold">14 天</span>
         </div>
         <div class="btn-group">
-            <button onclick="openStudyMethod()" class="btn-main btn-method">💡 查看「三次做卷法」</button>
-            <button onclick="downloadOriginalPDF()" class="btn-main btn-download">📄 下載範本 PDF</button>
-            <button onclick="window.print()" class="btn-main">🖨️ 列印網頁</button>
+            <button onclick="openStudyMethod()" class="btn-main btn-method">💡 三次做卷法</button>
+            <button onclick="downloadOriginalPDF()" class="btn-main btn-download">📄 範本 PDF</button>
+            <button onclick="window.print()" class="btn-main">🖨️ 列印</button>
             <button onclick="resetData()" class="btn-main" style="background-color: #A08080;">🔄 重置</button>
         </div>
     </div>
 
-    <div class="calendar-grid" id="calendar">
-        <div class="day-header">SUN 日</div>
-        <div class="day-header">MON 一</div>
-        <div class="day-header">TUE 二</div>
-        <div class="day-header">WED 三</div>
-        <div class="day-header">THU 四</div>
-        <div class="day-header">FRI 五</div>
-        <div class="day-header">SAT 六</div>
+    <div class="calendar-scroll-wrapper">
+        <div class="calendar-grid" id="calendar">
+            <div class="day-header">SUN 日</div>
+            <div class="day-header">MON 一</div>
+            <div class="day-header">TUE 二</div>
+            <div class="day-header">WED 三</div>
+            <div class="day-header">THU 四</div>
+            <div class="day-header">FRI 五</div>
+            <div class="day-header">SAT 六</div>
+        </div>
     </div>
 
     <div class="note-section">
-        <div class="p-4 bg-orange-50 rounded-2xl border border-orange-100">
-            <h3 class="font-bold mb-2">💡 溫習秘訣</h3>
-            <ul class="text-xs space-y-1 opacity-80">
+        <div class="p-3 bg-orange-50 rounded-xl border border-orange-100 text-xs">
+            <h3 class="font-bold mb-1">💡 溫習秘訣</h3>
+            <ul class="space-y-1 opacity-80">
                 <li>1. 填寫考試日後，按「由尾溫起」順序安排。</li>
-                <li>2. 善用自定義方塊，將複雜科目拆解成小部分。</li>
+                <li>2. 善用自定義方塊，將複雜科目拆解成小部分</li>
                 <li>3. 考前一天強烈建議配合「三次做卷法」進行最後衝刺。</li>
                 <li>4. 點擊日子右上角的圓圈可標記「已完成」，專注剩下進度！</li>
             </ul>
         </div>
-        <div class="p-4 bg-blue-50 rounded-2xl border border-blue-100">
-            <h3 class="font-bold mb-2">🍦 小貼士</h3>
-            <p class="text-xs opacity-80">本工具只有電腦版可以自由新增科目方塊及拖動功能，平板及手機需要手動填寫考試及溫習內容。標記為已完成的日子會變為灰色，方便你一眼看出還有多少挑戰等著你！</p>
+        <div class="p-3 bg-blue-50 rounded-xl border border-blue-100 text-xs">
+            <h3 class="font-bold mb-1">🍦 操作提示</h3>
+            <p class="opacity-80">1. 本工具支援手機拖拽填寫。若月曆顯示不全，請左右滑動查看所有日子。</p>
+            <p class="opacity-80">2. 另外本工具可以自由新增科目方塊，並只能拖動至「溫習」項目。</p>
+            <p class="opacity-80">3. 標記為已完成的日子會變為灰色，方便你一眼看出還有多少挑戰等著你！</p>
         </div>
     </div>
 
-    <div class="footer-logo text-center mt-8 opacity-40 text-xs">
-        - ART.IS.A.STORY | 自定義溫習計畫工具 | 網頁由 Gemini AI 製作 -
+    <div class="text-center mt-6 opacity-30 text-[9px]">
+        - ART.IS.A.STORY | 自定義溫習計畫工具 | 網頁由 Google Gemini 製作 -
     </div>
 </div>
 
@@ -347,15 +314,15 @@
     const calendar = document.getElementById('calendar');
     const blockArea = document.getElementById('blockArea');
     const newSubjectInput = document.getElementById('newSubjectInput');
+    const touchGhost = document.getElementById('touch-ghost');
     
     let currentDays = 14;
     let subjects = ["📚 中文", "📐 數學", "🇬🇧 英文", "🌍 常識", "🧪 科學", "🍦 休息", "📝 模擬卷"];
+    let activeTouchData = null;
 
     function init() {
         const savedSubjects = localStorage.getItem('study_v4_subjects');
-        if (savedSubjects) {
-            subjects = JSON.parse(savedSubjects);
-        }
+        if (savedSubjects) subjects = JSON.parse(savedSubjects);
         renderSubjects();
         renderCalendar();
     }
@@ -435,19 +402,14 @@
         touchGhost.style.display = 'none';
         activeTouchData = null;
     }
-    
+
     function addNewSubject() {
         const name = newSubjectInput.value.trim();
-        if (name) {
-            subjects.push(name);
-            newSubjectInput.value = '';
-            renderSubjects();
-        }
+        if (name) { subjects.push(name); newSubjectInput.value = ''; renderSubjects(); }
     }
 
     function deleteSubject(index) {
-        subjects.splice(index, 1);
-        renderSubjects();
+        subjects.splice(index, 1); renderSubjects();
     }
 
     function updateDays(val) {
@@ -482,58 +444,21 @@
             cell.innerHTML = `
                 <div class="cell-top">
                     <div class="cell-date">DAY ${i}</div>
-                    <div class="complete-toggle no-print" onclick="toggleComplete(${i})" title="標記為已完成">
-                        ${savedData.completed ? '✓' : ''}
-                    </div>
+                    <div class="complete-toggle no-print" onclick="toggleComplete(${i})">${savedData.completed ? '✓' : ''}</div>
                 </div>
-                <input type="text" class="input-area exam-tag font-bold" placeholder="✍️ 填寫考試" 
-                       value="${savedData.exam || ''}" onchange="saveData(${i}, 'exam', this.value)" ${savedData.completed ? 'readonly' : ''}>
-                <input type="text" id="study-input-${i}" class="input-area study-tag" placeholder="📖 溫習內容" 
-                       value="${savedData.study || ''}" onchange="saveData(${i}, 'study', this.value)" ${savedData.completed ? 'readonly' : ''}>
-                <textarea class="input-area text-[10px] leading-tight" style="height: 45px; resize: none; background:transparent;" 
-                          placeholder="小提醒..." onchange="saveData(${i}, 'notes', this.value)" ${savedData.completed ? 'readonly' : ''}>${savedData.notes || ''}</textarea>
+                <input type="text" class="input-area exam-tag" placeholder="✍️ 考試" value="${savedData.exam || ''}" onchange="saveData(${i}, 'exam', this.value)" ${savedData.completed ? 'readonly' : ''}>
+                <input type="text" id="study-input-${i}" class="input-area study-tag" placeholder="📖 溫習" value="${savedData.study || ''}" onchange="saveData(${i}, 'study', this.value)" ${savedData.completed ? 'readonly' : ''}>
+                <textarea class="input-area text-[9px]" style="height: 40px; resize: none; background:transparent;" placeholder="筆記..." onchange="saveData(${i}, 'notes', this.value)" ${savedData.completed ? 'readonly' : ''}>${savedData.notes || ''}</textarea>
             `;
             calendar.appendChild(cell);
         }
     }
 
     function toggleComplete(id) {
-        const cell = document.getElementById(`day-cell-${id}`);
         let data = JSON.parse(localStorage.getItem(`study_v4_cell_${id}`) || '{}');
         data.completed = !data.completed;
         localStorage.setItem(`study_v4_cell_${id}`, JSON.stringify(data));
-        renderCalendar(); // 重新渲染以更新狀態
-    }
-
-    function drag(ev) {
-        const text = ev.target.innerText.replace(" ✕", "");
-        ev.dataTransfer.setData("text", text);
-    }
-
-    function allowDrop(ev) {
-        ev.preventDefault();
-        const cell = ev.currentTarget;
-        if (!cell.classList.contains('is-completed')) {
-            cell.classList.add('drag-over');
-        }
-    }
-
-    function leaveDrop(ev) {
-        ev.currentTarget.classList.remove('drag-over');
-    }
-
-    function drop(ev, id) {
-        ev.preventDefault();
-        const cell = ev.currentTarget;
-        cell.classList.remove('drag-over');
-        
-        // 如果格子已完成，不允許放下方塊
-        if (cell.classList.contains('is-completed')) return;
-
-        const data = ev.dataTransfer.getData("text");
-        const input = document.getElementById(`study-input-${id}`);
-        input.value = "溫習：" + data;
-        saveData(id, 'study', input.value);
+        renderCalendar();
     }
 
     function saveData(id, field, value) {
@@ -543,21 +468,14 @@
     }
 
     function resetData() {
-        if(confirm('確定要清空所有月曆內容嗎？(科目方塊將保留)')) {
+        if(confirm('確定要清空所有內容嗎？')) {
             for(let i=1; i<=28; i++) localStorage.removeItem(`study_v4_cell_${i}`);
             location.reload();
         }
     }
 
-    function downloadOriginalPDF() {
-        const pdfUrl = 'https://drive.google.com/file/d/10zot_T1xmTJyv-WwcoJ2X10bbOPAK4_5/view?usp=sharing'; 
-        window.open(pdfUrl, '_blank');
-    }
-
-    function openStudyMethod() {
-        const methodUrl = 'https://drive.google.com/file/d/1ABXGGhYRP7spVSs7BjsSLOK5NtKKzbPx/view?usp=sharing';
-        window.open(methodUrl, '_blank');
-    }
+    function downloadOriginalPDF() { window.open('https://drive.google.com/file/d/10zot_T1xmTJyv-WwcoJ2X10bbOPAK4_5/view?usp=sharing', '_blank'); }
+    function openStudyMethod() { window.open('https://drive.google.com/file/d/1ABXGGhYRP7spVSs7BjsSLOK5NtKKzbPx/view?usp=sharing', '_blank'); }
 
     window.onload = init;
 </script>
