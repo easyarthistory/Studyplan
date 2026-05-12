@@ -256,6 +256,21 @@
         .btn-download { background-color: #D4A373; }
         .btn-method { background-color: #8EACCD; }
 
+        /* 手機拖拽時跟隨手指的虛擬元素樣式 */
+        #touch-ghost {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            background: white;
+            padding: 6px 10px;
+            border-radius: 10px;
+            border: 1.5px solid var(--latte);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-size: 0.85rem;
+            display: none;
+            opacity: 0.9;
+        }
+        
         @media print {
             .no-print { display: none; }
             body { background: white; padding: 0; }
