@@ -52,7 +52,7 @@
         }
 
         h1 {
-            font-size: 2.2rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--mocha);
             letter-spacing: 2px;
@@ -65,27 +65,27 @@
         /* 拖拉區域 */
         .block-area {
             background: #EFE5D9;
-            padding: 15px;
-            border-radius: 20px;
-            margin-bottom: 20px;
+            padding: 12px;
+            border-radius: 15px;
+            margin-bottom: 15px;
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             align-items: center;
         }
 
         .draggable-item {
             background: white;
-            padding: 6px 12px;
-            border-radius: 12px;
-            border: 2px solid var(--latte);
+            padding: 6px 10px;
+            border-radius: 10px;
+            border: 1.5px solid var(--latte);
             cursor: grab;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             user-select: none;
             transition: all 0.2s;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             user-select: none;
             touch-action: none; /* 重要：防止拖拽時螢幕滾動 */
         }
@@ -118,24 +118,25 @@
         .day-header {
             text-align: center;
             font-weight: bold;
-            padding: 8px;
+            padding: 6px;
             background-color: var(--latte);
             color: white;
-            border-radius: 10px;
-            font-size: 0.85rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
         }
 
         .day-cell {
-            min-height: 160px;
-            border: 2px solid #EFE5D9;
-            border-radius: 15px;
-            padding: 10px;
+            min-height: 150px;
+            border: 1.5px solid #EFE5D9;
+            border-radius: 12px;
+            padding: 8px;
             background: white;
             transition: all 0.3s;
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 4px;
             position: relative;
+            transition: background-color 0.2s;
         }
 
         /* 已完成樣式 */
@@ -241,7 +242,7 @@
             background-color: var(--mocha);
             color: white;
             padding: 8px 16px;
-            border-radius: 20px;
+            border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s;
             font-size: 0.9rem;
@@ -271,10 +272,10 @@
         }
         
         @media print {
-            .no-print { display: none; }
-            body { background: white; padding: 0; }
+            .no-print, .complete-toggle { display: none !important; }
+            .calendar-scroll-wrapper { overflow: visible; }
+            .calendar-grid { min-width: auto; grid-template-columns: repeat(7, 1fr); }
             .notebook-container { box-shadow: none; border: 1px solid #ccc; width: 100%; max-width: 100%; }
-            .complete-toggle { display: none; }
         }
     </style>
 </head>
