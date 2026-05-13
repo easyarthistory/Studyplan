@@ -447,6 +447,7 @@
                     <div class="complete-toggle no-print" onclick="toggleComplete(${i})">${savedData.completed ? '✓' : ''}</div>
                 </div>
                 <input type="text" class="input-area exam-tag" placeholder="✍️ 考試" value="${savedData.exam || ''}" onchange="saveData(${i}, 'exam', this.value)" ${savedData.completed ? 'readonly' : ''}>
+                <input type="text" class="input-area exam-tag" placeholder="✍️ 考試" value="${savedData.exam || ''}" onchange="saveData(${i}, 'exam', this.value)" ${savedData.completed ? 'readonly' : ''}>
                 <input type="text" id="study-input-${i}" class="input-area study-tag" placeholder="📖 溫習" value="${savedData.study || ''}" onchange="saveData(${i}, 'study', this.value)" ${savedData.completed ? 'readonly' : ''}>
                 <textarea class="input-area text-[9px]" style="height: 40px; resize: none; background:transparent;" placeholder="溫習內容/備註..." onchange="saveData(${i}, 'notes', this.value)" ${savedData.completed ? 'readonly' : ''}>${savedData.notes || ''}</textarea>
             `;
